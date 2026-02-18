@@ -23,7 +23,7 @@
   <main>
     <div class="grid" id="team-grid">
       {% for team in teams %}
-      <div class="card" data-name="{{ team.display_name | lower }}">
+      <a class="card" href="/team/{{ team.id }}" data-name="{{ team.display_name | lower }}">
         <div class="card-logo">
           <img src="{{ team.logo_url }}" alt="{{ team.display_name }} logo" loading="lazy" />
         </div>
@@ -39,7 +39,7 @@
           </div>
           <div class="win-pct">{{ team.win_pct }}%</div>
         </div>
-      </div>
+      </a>
       {% endfor %}
     </div>
 

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ team.display_name }} — NFL Stats Tracker</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <style>
+    :root {
+      --team-primary: #{{ team.color }};
+      --team-alt: #{{ team.alt_color }};
+    }
+  </style>
+</head>
+<body>
+
+  <header class="team-header" style="background: linear-gradient(135deg, #{{ team.color }} 0%, #{{ team.alt_color }} 100%);">
+    <a href="/" class="back-link">← All Teams</a>
+    <div class="team-hero">
+      <img src="{{ team.logo_url }}" alt="{{ team.display_name }} logo" class="hero-logo" />
+      <div class="hero-info">
+        <div class="hero-city">{{ team.city }}</div>
+        <h1 class="hero-name">{{ team.name }}</h1>
+        <div class="hero-abbrev">{{ team.abbrev }}</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="detail-main">
+
+    <!-- Stadium Banner -->
+    {% if team.venue_name %}
+    <section class="venue-banner">
+      <div class="venue-icon">🏟️</div>
+      <div class="venue-text">
+        <div class="venue-name">{{ team.venue_name }}</div>
+        <div class="venue-meta">
+          {{ team.venue_city }}{% if team.venue_state %}, {{ team.venue_state }}{% endif %}
+          {% if team.venue_opened %} &middot; Opened {{ team.venue_opened }}{% endif %}
+          &middot; {{ team.venue_surface }}
+          {% if team.venue_indoor %}&middot; Indoor{% endif %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    <!-- Player Leaders -->
+    {% if team.player_leaders %}
+    <section class="section">
+      <h2 class="section-title">Season Leaders</h2>
+      <div class="leaders-grid">
+        {% for leader in team.player_leaders %}
+        <div class="leader-card">
+          {% if leader.headshot_url %}
+          <img src="{{ leader.headshot_url }}" alt="{{ leader.player_name }}" class="leader-headshot" />
+          {% else %}
+          <div class="leader-headshot leader-headshot--placeholder"></div>
+          {% endif %}
+          <div class="leader-info">
+            <div class="leader-category">{{ leader.category }}</div>
+            <div class="leader-name">{{ leader.player_name }}</div>
+            <div class="leader-value">{{ leader.value }}</div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+    <!-- Team Season Stats -->
+    <section class="section">
+      <h2 class="section-title">Team Stats — 2024 Season</h2>
+      <div class="stats-panels">
+
+        <div class="stats-panel">
+          <h3 class="panel-title">Offense</h3>
+          <table class="stats-table">
+            {% for stat in team.team_stats.offense %}
+            <tr>
+              <td class="stat-label">{{ stat.label }}</td>
+              <td class="stat-value">{{ stat.value }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+
+        <div class="stats-panel">
+          <h3 class="panel-title">Defense</h3>
+          <table class="stats-table">
+            {% for stat in team.team_stats.defense %}
+            <tr>
+              <td class="stat-label">{{ stat.label }}</td>
+              <td class="stat-value">{{ stat.value }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Roster -->
+    {% if team.roster %}
+    <section class="section">
+      <h2 class="section-title">Roster</h2>
+      {% set ns = namespace(current_unit="") %}
+      <div class="roster-table-wrap">
+        <table class="roster-table">
+          <thead>
+            <tr><th>#</th><th>Name</th><th>Position</th></tr>
+          </thead>
+          <tbody>
+            {% for player in team.roster %}
+              {% if player.unit != ns.current_unit %}
+                {% set ns.current_unit = player.unit %}
+                <tr class="roster-unit-row"><td colspan="3">{{ player.unit }}</td></tr>
+              {% endif %}
+              <tr>
+                <td class="jersey">{{ player.jersey }}</td>
+                <td class="player-name-cell">
+                  {% if player.headshot_url %}
+                  <img src="{{ player.headshot_url }}" alt="" class="mini-headshot" />
+                  {% endif %}
+                  {{ player.name }}
+                </td>
+                <td class="position-cell">{{ player.position }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+    {% endif %}
+
+  </main>
+
+  <footer>
+    <p>Data sourced from ESPN &middot; <a href="/" class="footer-link">← Back to all teams</a></p>
+  </footer>
+
+</body>
+</html>

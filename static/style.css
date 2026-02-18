@@ -163,6 +163,13 @@ main {
   font-weight: 500;
 }
 
+/* ── Index card — make <a> look like a card ──────────────── */
+a.card {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+}
+
 /* ── No results ───────────────────────────────────────────── */
 .no-results {
   text-align: center;
@@ -179,6 +186,286 @@ footer {
   font-size: 0.78rem;
   border-top: 1px solid var(--border);
 }
+
+/* ══════════════════════════════════════════════════════════ */
+/* ── Team Detail Page ─────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════ */
+
+.team-header {
+  padding: 1.5rem;
+  position: relative;
+}
+
+.back-link {
+  display: inline-block;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  transition: color 0.15s;
+}
+.back-link:hover { color: #fff; }
+
+.team-hero {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-logo {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+  flex-shrink: 0;
+}
+
+.hero-city {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.65);
+  font-weight: 600;
+}
+
+.hero-name {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+}
+
+.hero-abbrev {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.5);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  margin-top: 0.2rem;
+}
+
+/* ── Detail main layout ───────────────────────────────────── */
+.detail-main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* ── Venue banner ─────────────────────────────────────────── */
+.venue-banner {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.venue-icon { font-size: 2rem; line-height: 1; }
+
+.venue-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.venue-meta {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-top: 0.2rem;
+}
+
+/* ── Section titles ───────────────────────────────────────── */
+.section-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+/* ── Player leaders grid ──────────────────────────────────── */
+.leaders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 1rem;
+}
+
+.leader-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  transition: background 0.15s, transform 0.15s;
+}
+.leader-card:hover {
+  background: var(--surface-hover);
+  transform: translateY(-2px);
+}
+
+.leader-headshot {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--border);
+  flex-shrink: 0;
+}
+.leader-headshot--placeholder {
+  background: var(--border);
+}
+
+.leader-category {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+.leader-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: 0.1rem;
+}
+.leader-value {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #fff;
+  margin-top: 0.15rem;
+}
+
+/* ── Stats panels ─────────────────────────────────────────── */
+.stats-panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.stats-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+
+.panel-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  margin-bottom: 0.85rem;
+}
+
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.stats-table tr + tr td {
+  border-top: 1px solid var(--border);
+}
+.stats-table td {
+  padding: 0.55rem 0;
+  font-size: 0.9rem;
+}
+.stat-label {
+  color: var(--text-secondary);
+}
+.stat-value {
+  text-align: right;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* ── Roster table ─────────────────────────────────────────── */
+.roster-table-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.roster-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.roster-table thead tr {
+  background: rgba(255,255,255,0.04);
+}
+.roster-table thead th {
+  text-align: left;
+  padding: 0.65rem 1rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+}
+
+.roster-table tbody tr + tr td {
+  border-top: 1px solid var(--border);
+}
+.roster-table tbody td {
+  padding: 0.5rem 1rem;
+  color: var(--text-primary);
+}
+
+.roster-unit-row td {
+  background: rgba(255,255,255,0.03);
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.45rem 1rem !important;
+}
+
+.jersey {
+  width: 36px;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.player-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.mini-headshot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.position-cell {
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+}
+
+.footer-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+.footer-link:hover { color: var(--text-primary); }
 
 /* ── Responsive tweaks ────────────────────────────────────── */
 @media (max-width: 480px) {
@@ -198,5 +485,18 @@ footer {
 
   .record {
     font-size: 1.1rem;
+  }
+
+  .stats-panels {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-name {
+    font-size: 1.7rem;
+  }
+
+  .hero-logo {
+    width: 75px;
+    height: 75px;
   }
 }
