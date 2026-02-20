@@ -2,6 +2,12 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Global Memory
+
+**Read the global memory file at the start of every session:** `/Users/markporter/Code/global/claude_marklovestech_global.md`
+
+All user preferences and memories should be stored in that global file, not here. This file is for project-specific documentation only.
+
 ## Commands
 
 ```bash
